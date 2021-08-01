@@ -22,10 +22,9 @@ WeatherModel _$WeatherModelFromJson(Map<String, dynamic> json) {
         ? null
         : WeatherWind.fromJson(json['wind'] as Map<String, dynamic>),
     name: json['name'] as String?,
-    nativeCondition: json['nativeCondition'] == null
+    nativeCondition: json['sys'] == null
         ? null
-        : WeatherNative.fromJson(
-            json['nativeCondition'] as Map<String, dynamic>),
+        : WeatherNative.fromJson(json['sys'] as Map<String, dynamic>),
   );
 }
 
@@ -37,6 +36,6 @@ Map<String, dynamic> _$WeatherModelToJson(WeatherModel instance) =>
       'dt': dateToJson(instance.time),
       'visibility': instance.visibility,
       'wind': instance.wind,
-      'nativeCondition': instance.nativeCondition,
+      'sys': instance.nativeCondition,
       'name': instance.name,
     };

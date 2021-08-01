@@ -1,13 +1,13 @@
 # wapp
 
-# FOR DEVELOPERS
+### FOR DEVELOPERS
 
-    - runner: flutter pub run build_runner watch --delete-conflicting-outputs
-    - weatherApi: [api](https://openweathermap.org/api)
+    * runner: flutter pub run build_runner watch --delete-conflicting-outputs
+    * weatherApi: https://openweathermap.org/api
 
 A new Flutter project.
 
-## Getting Started
+### Getting Started
 
 This project is a starting point for a Flutter application.
 

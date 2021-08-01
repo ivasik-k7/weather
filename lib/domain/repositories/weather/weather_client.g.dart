@@ -8,7 +8,7 @@ part of 'weather_client.dart';
 
 class _WeatherApiClient implements WeatherApiClient {
   _WeatherApiClient(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'https://api.openweathermap.org/data/2.5';
+    baseUrl ??= 'http://api.openweathermap.org/data/2.5';
   }
 
   final Dio _dio;

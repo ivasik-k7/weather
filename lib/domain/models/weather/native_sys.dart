@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:wapp/utils/helpers.dart';
 
 part 'native_sys.g.dart';
 
@@ -21,7 +22,9 @@ class WeatherNative extends Equatable {
   final int? type;
   final String? country;
   final double? message;
+  @JsonKey(fromJson: dateFromJson, toJson: dateToJson)
   final DateTime? sunset;
+  @JsonKey(fromJson: dateFromJson, toJson: dateToJson)
   final DateTime? sunrise;
 
   @override

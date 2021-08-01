@@ -32,6 +32,7 @@ class WeatherModel extends Equatable {
   final DateTime? time;
   final int? visibility;
   final WeatherWind? wind;
+  @JsonKey(name: "sys")
   final WeatherNative? nativeCondition;
   final String? name;
 

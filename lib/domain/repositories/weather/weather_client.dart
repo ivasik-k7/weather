@@ -4,7 +4,7 @@ import 'package:wapp/domain/models/weather/weather.dart';
 
 part 'weather_client.g.dart';
 
-@RestApi(baseUrl: 'https://api.openweathermap.org/data/2.5')
+@RestApi(baseUrl: 'http://api.openweathermap.org/data/2.5')
 abstract class WeatherApiClient {
   factory WeatherApiClient(Dio dio, {String baseUrl}) = _WeatherApiClient;
 

@@ -12,12 +12,8 @@ WeatherNative _$WeatherNativeFromJson(Map<String, dynamic> json) {
     type: json['type'] as int?,
     country: json['country'] as String?,
     message: (json['message'] as num?)?.toDouble(),
-    sunset: json['sunset'] == null
-        ? null
-        : DateTime.parse(json['sunset'] as String),
-    sunrise: json['sunrise'] == null
-        ? null
-        : DateTime.parse(json['sunrise'] as String),
+    sunset: dateFromJson(json['sunset'] as int),
+    sunrise: dateFromJson(json['sunrise'] as int),
   );
 }
 
@@ -27,6 +23,6 @@ Map<String, dynamic> _$WeatherNativeToJson(WeatherNative instance) =>
       'type': instance.type,
       'country': instance.country,
       'message': instance.message,
-      'sunset': instance.sunset?.toIso8601String(),
-      'sunrise': instance.sunrise?.toIso8601String(),
+      'sunset': dateToJson(instance.sunset),
+      'sunrise': dateToJson(instance.sunrise),
     };
