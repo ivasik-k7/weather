@@ -4,6 +4,7 @@ import 'package:wapp/domain/models/weather/info.dart';
 import 'package:wapp/domain/models/weather/main.dart';
 import 'package:wapp/domain/models/weather/native_sys.dart';
 import 'package:wapp/domain/models/weather/wind.dart';
+import 'package:wapp/utils/helpers.dart';
 
 part 'weather.g.dart';
 
@@ -27,7 +28,7 @@ class WeatherModel extends Equatable {
   final List<WeatherInfo?>? weather;
   @JsonKey(name: 'main')
   final WeatherMain? condition;
-  @JsonKey(name: 'dt')
+  @JsonKey(name: 'dt', fromJson: dateFromJson, toJson: dateToJson)
   final DateTime? time;
   final int? visibility;
   final WeatherWind? wind;
