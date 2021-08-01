@@ -3,6 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'main.g.dart';
 
+@JsonSerializable()
 class WeatherMain extends Equatable {
   const WeatherMain({
     this.condition,
@@ -12,6 +13,9 @@ class WeatherMain extends Equatable {
     this.pressure,
     this.humidity,
   });
+
+  factory WeatherMain.fromJson(Map<String, dynamic> map) =>
+      _$WeatherMainFromJson(map);
 
   @JsonKey(name: "temp")
   final double? condition;
@@ -23,6 +27,8 @@ class WeatherMain extends Equatable {
   final double? min;
   final int? pressure;
   final int? humidity;
+
+  Map<String, dynamic> toJson() => _$WeatherMainToJson(this);
 
   @override
   List<Object?> get props => [condition, min, max, feels, humidity];
