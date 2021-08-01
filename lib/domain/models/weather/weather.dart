@@ -20,6 +20,9 @@ class WeatherModel extends Equatable {
     this.nativeCondition,
   });
 
+  factory WeatherModel.fromJson(Map<String, dynamic> map) =>
+      _$WeatherModelFromJson(map);
+
   final int? id;
   final List<WeatherInfo?>? weather;
   @JsonKey(name: 'main')
@@ -38,6 +41,8 @@ class WeatherModel extends Equatable {
         nativeCondition,
         time,
       ];
+
+  Map<String, dynamic> toJson() => _$WeatherModelToJson(this);
 
   @override
   bool? get stringify => true;
