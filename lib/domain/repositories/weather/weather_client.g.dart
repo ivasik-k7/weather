@@ -24,6 +24,7 @@ class _WeatherApiClient implements WeatherApiClient {
       r'lang': lang,
       r'units': measurement
     };
+    queryParameters.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<WeatherModel>(

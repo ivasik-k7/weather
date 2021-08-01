@@ -12,7 +12,7 @@ abstract class WeatherApiClient {
   Future<WeatherModel> getWeather(
     @Query('appid') String appId,
     @Query('q') String location,
-    @Query('lang') String lang,
-    @Query('units') String measurement,
+    @Query('lang') String? lang,
+    @Query('units') String? measurement,
   );
 }

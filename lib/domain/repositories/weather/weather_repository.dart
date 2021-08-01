@@ -17,8 +17,8 @@ class WeatherRepository extends WeatherDataSource {
   @override
   Future<WeatherModel> getWeather(
     String location, {
-    String lang = 'uk',
-    String unit = 'metric',
+    String? lang = 'uk',
+    String? unit = 'metric',
   }) =>
       apiClient.getWeather(
         serviceKey,
