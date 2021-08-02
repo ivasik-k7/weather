@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:wapp/bloc/weather/weather_bloc.dart';
+import 'package:wapp/di/singletons/weather_config.dart';
 import 'package:wapp/ui/widgets/loader.dart';
 
 class MainPage extends StatelessWidget {
@@ -9,8 +11,12 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<WeatherBloc>(context)
-        .add(FetchWeather(location: 'Kyiv', unit: 'metric'));
+    final client = GetIt.instance<WeatherClientConfig>();
+    BlocProvider.of<WeatherBloc>(context).add(FetchWeather(
+      location: client.location,
+      unit: client.unit,
+      lang: client.language,
+    ));
     return SafeArea(
       child: Scaffold(body: BlocBuilder<WeatherBloc, WeatherState>(
         builder: (BuildContext context, WeatherState state) {
@@ -64,6 +70,7 @@ class MainPage extends StatelessWidget {
   }
 
   Widget buildWeatherCard(WeatherLoaded state) {
+    final w = state.weather;
     return Container(
       padding: EdgeInsets.all(10),
       child: Column(
@@ -71,10 +78,10 @@ class MainPage extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             child: Image.network(
-                'http://openweathermap.org/img/wn/${state.weather.weather?.first?.iconPath}@2x.png'),
+                'http://openweathermap.org/img/wn/${w.weather?.first?.iconPath}@2x.png'),
           ),
           Text(
-            state.weather.name ?? "No name",
+            w.name ?? "No name",
             style: TextStyle(
               fontSize: 23,
               fontWeight: FontWeight.bold,
@@ -89,11 +96,11 @@ class MainPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Temperature: ${state.weather.condition?.condition}'),
-                    Text('Feels like: ${state.weather.condition?.feels}'),
-                    Text('Minimum: ${state.weather.condition?.min}'),
-                    Text('Maximal: ${state.weather.condition?.max}'),
-                    Text('Pressure: ${state.weather.condition?.pressure} mm.'),
+                    Text('Temperature: ${w.condition?.condition}'),
+                    Text('Feels like: ${w.condition?.feels}'),
+                    Text('Minimum: ${w.condition?.min}'),
+                    Text('Maximal: ${w.condition?.max}'),
+                    Text('Pressure: ${w.condition?.pressure} mm.'),
                   ],
                 ),
               ),
@@ -102,21 +109,27 @@ class MainPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      'Country: ${state.weather.nativeCondition?.country ?? "Undefined"}',
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text('Country:'),
+                          Image.network(
+                              'https://www.countryflags.io/${w.nativeCondition?.country ?? ""}/flat/24.png'),
+                        ],
+                      ),
                     ),
                     Text(
-                      'Type: ${state.weather.nativeCondition?.type ?? ""}',
+                      'Type: ${w.nativeCondition?.type ?? ""}',
                     ),
                     Text(
                       DateFormat("HH:mm:ss").format(
-                        state.weather.nativeCondition?.sunrise ??
-                            DateTime.now(),
+                        w.nativeCondition?.sunrise ?? DateTime.now(),
                       ),
                     ),
                     Text(
                       DateFormat("HH:mm:ss").format(
-                        state.weather.nativeCondition?.sunset ?? DateTime.now(),
+                        w.nativeCondition?.sunset ?? DateTime.now(),
                       ),
                     ),
                   ],

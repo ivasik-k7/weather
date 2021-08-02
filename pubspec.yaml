@@ -33,10 +33,10 @@ dependencies:
     sqflite: ^2.0.0+3
     retrofit: any
     analyzer: any
-    # json_serializable: ^5.0.0
     json_serializable: ^4.1.4
     json_annotation: ^4.1.0
     intl: ^0.17.0
+    get_it: ^7.2.0
 
 dev_dependencies:
     # flutter_test:

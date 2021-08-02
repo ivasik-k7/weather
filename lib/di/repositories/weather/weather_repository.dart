@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:wapp/di/repositories/weather/weather_client.dart';
+import 'package:wapp/di/repositories/weather/weather_source.dart';
 import 'package:wapp/domain/models/weather/weather.dart';
-import 'package:wapp/domain/repositories/weather/weather_client.dart';
-import 'package:wapp/domain/repositories/weather/weather_source.dart';
 
 class WeatherRepository extends WeatherDataSource {
   WeatherRepository() {
