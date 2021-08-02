@@ -1,5 +1,5 @@
 class WeatherClientConfig {
-  String _location = 'Kyiv';
+  String _location = 'sevastopol';
   String _unit = 'metric';
   String _lang = 'uk';
 

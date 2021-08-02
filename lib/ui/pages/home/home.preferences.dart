@@ -24,6 +24,9 @@ class _PreferencesPageState extends State<PreferencesPage> {
   @override
   void initState() {
     locationController = TextEditingController(text: config.location);
+    locationController.addListener(() {
+      config.location = locationController.text;
+    });
     selectUnit = config.unit;
     super.initState();
   }
@@ -32,10 +35,6 @@ class _PreferencesPageState extends State<PreferencesPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: Text('Save'),
-          onPressed: handleStateSaving,
-        ),
         body: Container(
           padding: padding,
           child: Form(
